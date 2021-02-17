@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.rog//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.netchus.mapper.SensorMapper">
+
+	<select id="get" resultType="hashMap">
+	select s.* FROM(
+	SELECT * FROM SensorData_Test order by reg_date desc
+	LIMIT 0 <!-- #{pageNum}*#{amount} -->, 10  <!-- #{pageNum-1}*#{amount} -->
+	) s
+	</select>
+
+	<select id="getTotalCount" resultType="integer">
+	SELECT COUNT(id) FROM SensorData_Test;
+	</select>
+</mapper>
